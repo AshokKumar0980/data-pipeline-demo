@@ -1,18 +1,20 @@
 package com.company.pipeline;
 
-import java.io.*;
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Starting Data Pipeline...");
-        
-        String inputPath = args.length > 0 ? args[0] : "input/sample-data.csv";
-        String outputPath = args.length > 1 ? args[1] : "output/processed-data.csv";
-        
+        System.out.println("🚀 Starting Data Pipeline...");
+
+        DataValidator validator = new DataValidator();
         DataProcessor processor = new DataProcessor();
-        processor.processFile(inputPath, outputPath);
-        
-        System.out.println("Pipeline completed successfully!");
+
+        String inputFile = "input/sample-data.csv";
+        String outputFile = "output/processed-data.csv";
+
+        if (validator.validate(inputFile)) {
+            processor.process(inputFile, outputFile);
+            System.out.println("✅ Pipeline completed successfully!");
+        } else {
+            System.out.println("❌ Validation failed. Exiting...");
+        }
     }
 }
