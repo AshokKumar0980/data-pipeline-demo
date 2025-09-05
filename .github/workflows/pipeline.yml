@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+      
     steps:
       # 1. Checkout repository
       - name: Checkout code
@@ -46,14 +46,10 @@ jobs:
           path: output/processed-data.csv
           retention-days: 30
 
-      # 7. Create release on main branch (optional)
-      - name: Create Release
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: build-${{ github.run_number }}
-          release_name: Build ${{ github.run_number }}
-          draft: false
-          prerelease: false
+      # 7. Show success message
+      - name: Pipeline Summary
+        run: |
+          echo "✅ Pipeline completed successfully!"
+          echo "📦 JAR file: target/data-processor-1.0.jar"
+          echo "📊 Processed data: output/processed-data.csv"
+          echo "💾 Artifacts available for download in Actions tab"
