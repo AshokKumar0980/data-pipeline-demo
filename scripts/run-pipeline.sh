@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "▶ Running Data Pipeline..."
-java -cp target/data-processor-1.0.jar com.company.pipeline.Main
+java -jar target/dncs-mars-api-1.0.jar
 echo "✅ Data Pipeline execution completed."

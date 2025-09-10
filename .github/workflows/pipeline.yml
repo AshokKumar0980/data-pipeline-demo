@@ -28,14 +28,14 @@ jobs:
 
       # 4. Run Pipeline
       - name: Run Data Pipeline
-        run: java -cp target/data-processor-1.0.jar com.company.pipeline.Main
+        run: java -jar target/dncs-mars-api-1.0.jar
 
       # 5. Upload build artifacts
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: data-processor-jar-${{ github.run_number }}
-          path: target/data-processor-1.0.jar
+          name: dncs-mars-api-jar-${{ github.run_number }}
+          path: target/dncs-mars-api-1.0.jar
           retention-days: 30
 
       # 6. Upload processed data
@@ -51,6 +51,6 @@ jobs:
       - name: Pipeline Summary
         run: |
           echo "✅ Pipeline completed successfully!"
-          echo "📦 JAR file: target/data-processor-1.0.jar"
+          echo "📦 JAR file: target/dncs-mars-api-1.0.jar"
           echo "📊 Processed data: output/processed-data.csv"
           echo "💾 Artifacts available for download in Actions tab"
